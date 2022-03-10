@@ -2,7 +2,6 @@ pragma solidity ^0.4.8;
 
 import "./fundraiser.sol";
 
-//Insecure code
 contract Attacker {
   address public fundraiserAddress;
   uint public drainTimes = 0;
