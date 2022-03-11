@@ -1,3 +1,4 @@
+//Use remix to  test this contract
 pragma solidity ^0.4.8;
 
 import "./fundraiser.sol";

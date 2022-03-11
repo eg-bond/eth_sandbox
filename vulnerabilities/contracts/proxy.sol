@@ -1,7 +1,8 @@
+// Simple proxy example
 pragma solidity ^0.7.6;
 
 import "./Storage.sol";
-
+// Proxy for Dogs contract
 contract ProxyDog is Storage {
 
     address public currentAddress;
@@ -15,6 +16,8 @@ contract ProxyDog is Storage {
     }
 
     function getNumberOfDogs() public returns (bool, bytes memory){
+        // delegatecall call function of external contract using
+        // scope of this contract
         (bool res, bytes memory data) = currentAddress.delegatecall(abi.encodePacked(bytes4(keccak256("getNumberOfDogs()"))));
         return (res, data);
     }
