@@ -8,6 +8,7 @@
   <script src="assets/bootstrap/js/popper.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 
+  <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/cats.css">
   <link rel="stylesheet" href="assets/css/colors.css">
@@ -121,15 +122,25 @@
                 <div class="form-group">
                     <label for="formControlRange"><b>Decoration pattern</b><span class="badge badge-dark ml-2" id="decorationName"></span></label>
                     <input type="range" min="1" max="7" class="form-control-range" id="decorationShape">
+                </div>                
+
+                <div class="form-group">
+                    <label for="formControlRange"><b>Decoration color pattern</b></label>
+                    <div class="row">
+                      <div class="col">
+                        <label for="formControlRange"><b>Mid decoration color</b><span class="badge badge-dark ml-2" id="midPatternCode"></span></label>
+                        <input type="range" min="10" max="98" class="form-control-range" id="midPatternColor">
+                      </div>
+                      <div class="col">
+                        <label for="formControlRange"><b>Sides decoration color</b><span class="badge badge-dark ml-2" id="sidePatternCode"></span></label>
+                        <input type="range" min="10" max="98" class="form-control-range" id="sidePatternColor">
+                      </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange"><b>Mid decoration color</b><span class="badge badge-dark ml-2" id="midPatternCode"></span></label>
-                    <input type="range" min="10" max="98" class="form-control-range" id="midPatternColor">
-                </div>
-                <div class="form-group">
-                    <label for="formControlRange"><b>Sides decoration color</b><span class="badge badge-dark ml-2" id="sidePatternCode"></span></label>
-                    <input type="range" min="10" max="98" class="form-control-range" id="sidePatternColor">
+                    <label for="formControlRange"><b>Animations</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
+                    <input type="range" min="1" max="7" class="form-control-range" id="animations">
                 </div>
             </div>         
                 
