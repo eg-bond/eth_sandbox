@@ -13,7 +13,7 @@ function genColors() {
   return colors
 }
 
-//This function code needs to modified so that it works with Your cat code.
+//colors change
 function headColor(color, code) {
   $('.cat__head, .cat__chest').css('background', '#' + color) //This changes the color of the cat
   $('#headcode').html('code: ' + code) //This updates text of the badge next to the slider
@@ -40,9 +40,21 @@ function earsColor(color, code) {
   $('#dnaears').html(code)
 }
 
-//###################################################
-//Functions below will be used later on in the project
-//###################################################
+function midPatternColor(color, code) {
+  $('.cat__head-dots').css('background', '#' + color)
+  $('#midPatternCode').html('code: ' + code)
+  $('#dnadecorationMid').html(code)
+}
+function sidePatternColor(color, code) {
+  $('.cat__head-dots_first, .cat__head-dots_second').css(
+    'background',
+    '#' + color
+  )
+  $('#sidePatternCode').html('code: ' + code)
+  $('#dnadecorationSides').html(code)
+}
+
+//shape change
 function eyeVariation(num) {
   $('#dnashape').html(num)
   switch (num) {
@@ -52,7 +64,7 @@ function eyeVariation(num) {
       break
     case 2:
       normalEyes() //reset
-      $('#eyeName').html('Chill')
+      $('#eyeName').html('Down')
       eyesType1()
       break
     case 3:
@@ -60,8 +72,14 @@ function eyeVariation(num) {
       $('#eyeName').html('Up')
       eyesType2()
       break
+    case 4:
+      normalEyes() //reset
+      $('#eyeName').html('Watching')
+      eyesType3()
+      break
     default:
-      console.log('nothin')
+      normalEyes() //reset
+      $('#eyeName').html('Not implemented')
       break
   }
 }
@@ -72,6 +90,25 @@ function decorationVariation(num) {
     case 1:
       $('#decorationName').html('Basic')
       normaldecoration()
+      break
+    case 2:
+      normaldecoration()
+      $('#decorationName').html('Up')
+      decorationType1()
+      break
+    case 3:
+      normaldecoration()
+      $('#decorationName').html('Left')
+      decorationType2()
+      break
+    case 4:
+      normaldecoration()
+      $('#decorationName').html('Peace')
+      decorationType3()
+      break
+    default:
+      normaldecoration()
+      $('#decorationName').html('Not implemented')
       break
   }
 }
@@ -85,6 +122,12 @@ async function eyesType1() {
 async function eyesType2() {
   await $('.cat__eye').find('span').css('border-bottom', '15px solid')
 }
+async function eyesType3() {
+  await $('.cat__eye')
+    .find('span')
+    .css('border-bottom', '15px solid')
+    .css('border-top', '15px solid')
+}
 
 async function normaldecoration() {
   //Remove all style from other decorations
@@ -94,6 +137,7 @@ async function normaldecoration() {
     height: '48px',
     width: '14px',
     top: '1px',
+    left: '101px',
     'border-radius': '0 0 50% 50%',
   })
   $('.cat__head-dots_first').css({
@@ -109,5 +153,26 @@ async function normaldecoration() {
     width: '14px',
     top: '1px',
     'border-radius': '0 50% 50% 50%',
+  })
+}
+async function decorationType1() {
+  $('.cat__head-dots').css({
+    transform: 'rotate(180deg)',
+  })
+}
+async function decorationType2() {
+  $('.cat__head-dots').css('left', '80px')
+}
+async function decorationType3() {
+  $('.cat__head-dots').css('top', '30px')
+  $('.cat__head-dots_first').css({
+    transform: 'rotate(135deg)',
+    height: '45px',
+    top: '-30px',
+  })
+  $('.cat__head-dots_second').css({
+    transform: 'rotate(45deg)',
+    height: '45px',
+    top: '-30px',
   })
 }
