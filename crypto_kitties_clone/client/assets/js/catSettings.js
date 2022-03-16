@@ -138,3 +138,14 @@ function showCattributes() {
   $('#cattributes').removeClass('hidden')
   $('#catColors').addClass('hidden')
 }
+
+function createKitty() {
+  // use send() if the function is not pure or view
+  instance.methods.createKittyGen0(getDna()).send({}, function (err, txHash) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(txHash)
+    }
+  })
+}

@@ -25,6 +25,14 @@ contract Kittycontract is ERC721("CryptoKittiesClone", "CKC"), Ownable {
   uint public constant CREATION_LIMIT_GEN0 = 10;
   uint public gen0Counter;
 
+  event Birth(
+    uint256 _mumId,
+    uint256 _dadId,
+    uint256 _generation,
+    uint256 _genes,
+    address _owner
+  );
+
   function createKittyGen0(uint256 _genes) public onlyOwner {
     require(gen0Counter < CREATION_LIMIT_GEN0, 'Amount of first generation kitties is exceeded');
     gen0Counter++;
@@ -51,7 +59,8 @@ contract Kittycontract is ERC721("CryptoKittiesClone", "CKC"), Ownable {
     uint256 newKittenId = kitties.length - 1;
 
     _safeMint(_owner, newKittenId);
-
+    emit Birth(_mumId, _dadId, _generation, _genes, _owner);
+    
     return newKittenId;
   }
 }
