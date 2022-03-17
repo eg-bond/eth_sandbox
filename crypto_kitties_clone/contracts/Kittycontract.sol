@@ -63,4 +63,35 @@ contract Kittycontract is ERC721("CryptoKittiesClone", "CKC"), Ownable {
     
     return newKittenId;
   }
+
+  function breed(uint _dadId, uint _mumId) public returns (uint) {
+    //check ownership
+    require(ownerOf(_dadId) == _msgSender() && ownerOf(_mumId) == _msgSender(),
+     "You are not the owner of thees kitties"
+     );
+    //get parents data
+    Kitty memory dad = getKitty(_dadId);
+    Kitty memory mum = getKitty(_mumId);
+
+    uint newDna = _mixDna(dad.genes, mum.genes);
+    //figure out the generation
+    uint newGen = _newGeneration(dad.generation, mum.generation);
+    //create a new cat with the new props, give it to the msg.sender
+    return _createKitty(_mumId, _dadId, newGen, newDna, _msgSender());
+  }
+
+  function _mixDna(uint _dadDna, uint _mumDna) pure internal returns (uint) {
+    uint firstHalf = _dadDna / 100000000;
+    uint secondHalf = _mumDna % 100000000;
+    uint mixedDna = firstHalf * 100000000 + secondHalf;
+    return mixedDna;  
+  }
+
+  function _newGeneration(uint _dadGen, uint _mumGen) pure internal returns (uint) {
+    if (_dadGen + 1 > _mumGen + 1) {
+        return _dadGen + 1;
+    } 
+    return _mumGen + 1;    
+  }
 }
+
