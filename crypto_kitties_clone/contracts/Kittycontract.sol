@@ -22,6 +22,18 @@ contract Kittycontract is ERC721("CryptoKittiesClone", "CKC"), Ownable {
     return kitties[id];
   }
 
+  function getKittyByOwner(address _owner) external view returns(uint[] memory) {
+    uint[] memory result = new uint[](balanceOf(_owner));
+    uint counter = 0;
+    for (uint i = 0; i < kitties.length; i++) {
+      if (ownerOf(i) == _owner) {
+        result[counter] = i;
+        counter++;
+      }
+    }
+    return result;
+  }
+
   uint public constant CREATION_LIMIT_GEN0 = 10;
   uint public gen0Counter;
 
@@ -84,7 +96,7 @@ contract Kittycontract is ERC721("CryptoKittiesClone", "CKC"), Ownable {
     uint firstHalf = _dadDna / 100000000;
     uint secondHalf = _mumDna % 100000000;
     uint mixedDna = firstHalf * 100000000 + secondHalf;
-    return mixedDna;  
+    return mixedDna;     
   }
 
   function _newGeneration(uint _dadGen, uint _mumGen) pure internal returns (uint) {
