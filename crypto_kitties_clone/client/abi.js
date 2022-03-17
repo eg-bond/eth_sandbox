@@ -519,6 +519,26 @@ let abi = [
   {
     inputs: [
       {
+        internalType: 'address',
+        name: '_owner',
+        type: 'address',
+      },
+    ],
+    name: 'getKittyByOwner',
+    outputs: [
+      {
+        internalType: 'uint256[]',
+        name: '',
+        type: 'uint256[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+    constant: true,
+  },
+  {
+    inputs: [
+      {
         internalType: 'uint256',
         name: '_genes',
         type: 'uint256',
@@ -526,6 +546,30 @@ let abi = [
     ],
     name: 'createKittyGen0',
     outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: '_dadId',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: '_mumId',
+        type: 'uint256',
+      },
+    ],
+    name: 'breed',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
     stateMutability: 'nonpayable',
     type: 'function',
   },
