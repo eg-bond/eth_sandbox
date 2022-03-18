@@ -45,6 +45,11 @@ contract Kittycontract is ERC721("CryptoKittiesClone", "CKC"), Ownable {
     address _owner
   );
 
+  // prefents the error with marketplace getAllTokenOnSale()
+  constructor () {
+    _createKitty(0, 0, 0, 0, address(0));
+  }
+
   function createKittyGen0(uint256 _genes) public onlyOwner {
     require(gen0Counter < CREATION_LIMIT_GEN0, 'Amount of first generation kitties is exceeded');
     gen0Counter++;
