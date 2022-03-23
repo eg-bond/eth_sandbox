@@ -31,8 +31,6 @@ contract KittyMarketPlace is Ownable, IKittyMarketPlace {
   function getOffer(uint256 _tokenId) public view returns ( 
     address seller, uint price, uint index, uint tokenId, bool active
   ) {
-    // require(tokenIdToOffer[_tokenId].active, 'There is no offer for this tokenId');
-
     Offer storage offer = tokenIdToOffer[_tokenId];
     seller = offer.seller;
     price = offer.price;
@@ -102,8 +100,7 @@ contract KittyMarketPlace is Ownable, IKittyMarketPlace {
     }
 
     // transfer ownership of the kitty
-    _kittyContract.transferFrom(offer.seller, msg.sender, _tokenId);
-    
+    _kittyContract.transferFrom(offer.seller, msg.sender, _tokenId);    
 
     emit MarketTransaction("Buy", msg.sender, _tokenId);
   }
