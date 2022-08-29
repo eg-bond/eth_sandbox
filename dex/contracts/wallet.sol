@@ -30,7 +30,6 @@ contract Wallet is Ownable {
   }
 
   function deposit(uint amount, bytes32 ticker) external payable tokenExist(ticker) {
-    require(tokenMapping[ticker].tokenAddress != address(0));
     IERC20(tokenMapping[ticker].tokenAddress).transferFrom(msg.sender, address(this), amount);
     balances[msg.sender][ticker] = balances[msg.sender][ticker].add(amount);
   }
