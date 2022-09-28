@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
+// An error will undo all changes made to the state during a transaction.
+
 contract Errors {
     function testRequire(uint _i) public pure {
         // Require should be used to validate conditions such as:

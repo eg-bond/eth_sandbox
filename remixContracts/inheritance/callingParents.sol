@@ -59,7 +59,7 @@ contract D is B, C {
     // it's neccesary to understand, what super does not simply call this function on one of its base contracts.
     // Rather, it calls this function on the next base contract in the FINAL INHERITANCE GRAPH (in our case D <- C <- B <- A), 
     // thats why then we call super.bar() it goes to contract C.bar() (because it's the right most parent contract),
-    // where there is also super.bar(), what calls B.bar(), not A.bar() and then super.bar() finally calls A.bar()
+    // where there is also super.bar(), what calls B.bar(), and then super.bar() finally calls A.bar()
 
     function foo() public override(B, C) {
         super.foo();

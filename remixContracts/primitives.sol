@@ -35,20 +35,24 @@ contract Primitives {
     address public addr = 0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c;
 
     /*
-    In Solidity, the data type byte represent a sequence of bytes. 
+    In Solidity, the data type "bytes" represent a sequence of bytes. 
     Solidity presents two type of bytes types :
 
-     - fixed-sized byte arrays
-     - dynamically-sized byte arrays.
-     
-     The term bytes in Solidity represents a dynamic array of bytes. 
-     It’s a shorthand for byte[] .
+     - fixed-sized byte arrays (bytes1, bytes2, ... bytesX) up to 32
+     - dynamically-sized byte arrays (bytes).
     */
-    bytes1 a = 0xb5; //  [10110101]
-    bytes1 b = 0x56; //  [01010110]
+
+    // by adding "0x" prefix we forse solidity to treat this value as hexidecimal
+    bytes1 public a  = 0xb5; //  [10110101]
+    bytes1 public b  = 0xff; //  [11111111]
+    bytes2 public c  = 0xDDBE; // [11011101, 10111110] ?
+    
+    function getBytesLength() view public returns (uint _length) {
+        _length = a.length;
+    }
 
     // Default values
-    // Unassigned variables have a default value
+    // There is no "undefined" or "null" values in solidity - all unassigned variables have a default value
     bool public defaultBoo; // false
     uint public defaultUint; // 0
     int public defaultInt; // 0
