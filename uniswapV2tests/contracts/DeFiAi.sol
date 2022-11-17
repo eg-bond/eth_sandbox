@@ -102,12 +102,12 @@ contract DeFiAIFarmV2 is Ownable {
     {
         PoolInfo storage pool = poolInfo[_pid];
         if (_wantAmt > 0) {
-            // require(pool.want.transferFrom(address(msg.sender), address(this), _wantAmt));
-            pool.want.safeTransferFrom(
-                address(msg.sender),
-                address(this),
-                _wantAmt
-            );
+            require(pool.want.transferFrom(address(msg.sender), address(this), _wantAmt));
+            // pool.want.safeTransferFrom(
+            //     address(msg.sender),
+            //     address(this),
+            //     _wantAmt
+            // );
 
             // pool.want.safeIncreaseAllowance(pool.strat, _wantAmt);
             pool.want.approve(pool.strat, _wantAmt);
