@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "ganache": "^7.4.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0"
   }
 }
