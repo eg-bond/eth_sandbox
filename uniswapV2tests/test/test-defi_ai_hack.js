@@ -16,9 +16,6 @@ contract('DEFI_AI_FARM', accounts => {
     const busd = await IERC20.at(BUSD)
     const farm = await IDeFiAI.at(FARM_ADDR)
 
-    // const farm = await DeFiAI.deployed()
-    // await farm.initialize(BUSD, STRAT, MIN_FEE)
-
     await busd.approve(FARM_ADDR, 2000000000000000, { from: BUSD_WHALE })
     const allowed = await busd.allowance(BUSD_WHALE, FARM_ADDR)
     console.log(`allowed: ${allowed}`)
@@ -37,6 +34,9 @@ contract('DEFI_AI_FARM', accounts => {
   it('withdrawal can be hacked', async () => {
     const busd = await IERC20.at(BUSD)
     const farm = await IDeFiAI.at(FARM_ADDR)
+
+    const farm2 = await DeFiAI.deployed()
+    await farm2.initialize(BUSD, STRAT, MIN_FEE)
 
     const stratBalanceB = await busd.balanceOf(STRAT)
     console.log(`strat balance before: ${stratBalanceB}`)
@@ -57,12 +57,14 @@ contract('DEFI_AI_FARM', accounts => {
     const hackerBUSD = await busd.balanceOf(
       '0xd88E75b4f3A869B0b56d34f2364dfCe26386a00C'
     )
-    console.log(`hacker BUSD balance after hack: ${hackerBUSD}`)
+    console.log(
+      `hacker BUSD balance after hack: ${web3.utils.fromWei(hackerBUSD)}`
+    )
   })
 
   it.skip('allowances for hacker addresses was set initially (inside hack)', async () => {
     // need to fork mainnet from block
-    // npx ganache --fork https://sparkling-newest-card.bsc.discover.quiknode.pro/fc233824d17f87e92a385162e072dd5a113bb8bf@18543477
+    // npx ganache --fork https://sparkling-newest-card.bsc.discover.quiknode.pro/fc233824d17f87e92a385162e072dd5a113bb8bf@23012220
 
     // !!! 23012220 - all addr has allowances
 

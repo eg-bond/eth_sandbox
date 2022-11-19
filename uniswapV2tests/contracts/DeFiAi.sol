@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-// import "./interfaces/IDeFiAIMultiStrat.sol";
 
 interface IDeFiAIMultiStrat {
     function deposit(address user, uint256 _wantAmt, address _wantAddress) external returns (uint256);
